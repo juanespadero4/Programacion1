@@ -49,3 +49,27 @@ from data_stark import lista_personajes
 # D. Recorrer la lista y determinar el peso promedio de los superhéroes
 # masculinos (PROMEDIO)
 
+# listalen = len(lista_personajes)
+# suma_peso = 0
+# cantidad_masculinos = 0
+# for personaje in lista_personajes:
+#     if personaje["genero"] == "M":
+#         suma_peso +=float(personaje["peso"])
+#         cantidad_masculinos +=1
+#     promedio_peso_masculino = suma_peso / cantidad_masculinos
+# print(f"El promedio de peso de los personajes masculinos es {promedio_peso_masculino} ")
+
+
+# E. Recorrer la lista y mostrar nombre y peso de los superhéroes (cualquier
+# género) los cuales su fuerza supere a la fuerza promedio de todas las
+# superhéroes de género femenino
+suma_fuerza_femenino = 0
+cantidad_femenino = 0
+for personaje in lista_personajes:
+    if personaje["genero"] == "F":
+        suma_fuerza_femenino +=float(personaje["fuerza"])
+        cantidad_femenino +=1
+    promedio_fuerza_femenino = suma_fuerza_femenino / cantidad_femenino
+
+    if float(personaje["fuerza"]) > promedio_fuerza_femenino:
+        print("El nombre del personaje cuya fuerza es mayor al promedio de la fuerza de los personajes femeninos es ", personaje["nombre"], "y su pero es ", personaje["peso"])
