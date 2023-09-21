@@ -1,0 +1,11 @@
+Clonar Repositorio:
+
+git clone ((link del github))
+
+Actualizar repositorio remoto:
+
+git add .
+git commit -m "mensaje a dejar"
+*git remote add origin ((Link))*
+git branch -m main
+git push -u origin main
