@@ -116,7 +116,7 @@ lista_personajes =\
     "peso": "288.61000000000001",
     "genero": "M",
     "color_ojos": "Blue",
-    "color_pelo": "Blond",
+    "color_pelo": "Blonde",
     "fuerza": "100",
     "inteligencia": "good"
   },

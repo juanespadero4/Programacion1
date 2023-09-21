@@ -5,7 +5,7 @@ from data_stark import lista_personajes
 while True:
     menu = int(input("""
     Seleccione cual de los siguientes datos quiere mostrar poniendo el numero asignado:
-                     
+                
     (1) Datos de todos los superheroes.
     (2) Identidad y peso del personaje con mas fuerza.
     (3) Nombre e identidad del personaje mas bajo de altura.

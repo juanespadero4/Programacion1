@@ -1,4 +1,4 @@
-from data_stark import lista_personajes
+
 
 # A
 def recorrido_lista_nb (lista):
@@ -46,6 +46,69 @@ def promedio_fuerza_nb(lista):
         if personaje["genero"] == "NB":
             cantidad_super_nb +=1
             acumulador_fuerza_nb += int(personaje["fuerza"])
-    cuenta_promedio = acumulador_fuerza_nb / cantidad_super_nb
-    mensaje = print(f"El promedio de fuerza de los personajes de genero NB es de {cuenta_promedio}")
+    if cantidad_super_nb != 0:
+        cuenta_promedio = acumulador_fuerza_nb / cantidad_super_nb
+        mensaje = print(f"El promedio de fuerza de los personajes de genero NB es de {cuenta_promedio}")
+    else:
+        mensaje = print("No hay personajes NB")
     return mensaje
+
+#G
+def color_de_ojos_super(lista):
+    conteo_colores = {}
+    for personaje in lista:
+        color = personaje["color_ojos"].lower()
+        conteo_colores[color] = conteo_colores.get(color, 0) + 1
+    for color, cantidad in conteo_colores.items():
+        print(f'Color de ojos: {color}, Cantidad: {cantidad}')
+
+#H
+def color_de_pelo_super(lista):
+    conteo_colores = {}
+
+    for personaje in lista:
+        color_pelo = personaje["color_pelo"].lower()
+        conteo_colores[color_pelo] = conteo_colores.get(color_pelo, 0) + 1
+
+    for color, cantidad in conteo_colores.items():
+        print(f'Color de pelo: {color}, Cantidad: {cantidad}')
+
+#I
+def listar_personajes_por_color_de_ojos(lista):
+    personajes_por_color = {}
+
+    for personaje in lista:
+        nombre = personaje["nombre"]
+        color_ojos = personaje.get("color_ojos").lower()
+        
+        if color_ojos in personajes_por_color:
+            personajes_por_color[color_ojos].append(nombre)
+        else:
+            personajes_por_color[color_ojos] = [nombre]
+
+    for color_ojos, lista_personajes in personajes_por_color.items():
+        print(f'Color de ojos: {color_ojos}')
+        for personaje in lista_personajes:
+            print(f'{personaje}')
+        print("--------------------------")
+
+#J
+def listar_personajes_por_inteligencia(lista):
+    personajes_por_inteligencia = {}
+
+    for personaje in lista:
+        nombre = personaje["nombre"]
+        inteligencia = personaje.get("inteligencia").lower()  
+        if inteligencia in personajes_por_inteligencia:
+            personajes_por_inteligencia[inteligencia].append(nombre)
+        else:
+            personajes_por_inteligencia[inteligencia] = [nombre]
+
+    for inteligencia, lista_personajes in personajes_por_inteligencia.items():
+        print(f'Nivel de inteligencia: {inteligencia}')
+        for personaje in lista_personajes:
+            print(f'{personaje}')
+        print("--------------------------")
+
+
+
