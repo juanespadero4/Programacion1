@@ -1,5 +1,5 @@
 
-
+from data_stark import lista_personajes
 # A
 def recorrido_lista_nb (lista):
     '''Recorre la lista en busqueda de personajes de genero no binario.'''
@@ -112,3 +112,4 @@ def listar_personajes_por_inteligencia(lista):
 
 
 
+listar_personajes_por_color_de_ojos(lista_personajes)
