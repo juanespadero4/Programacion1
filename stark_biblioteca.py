@@ -1,7 +1,9 @@
 from data_stark import lista_personajes
 import re
 
-def stark_normalizar_datos(lista: list):
+#JUAN IGNACIO ESPADERO 43181809
+
+def stark_normalizar_datos(lista: list)->str:
     '''Normaliza los datos y los vuelve in o float si son numeros enteros o con coma, si es str lo deja como esta'''
     exito = False
     for personaje in lista:
@@ -26,7 +28,8 @@ def stark_normalizar_datos(lista: list):
         return "Datos normalizados incorrectamente."
 
 
-def obtener_dato(diccionario: dict, clave):
+def obtener_dato(diccionario: dict, clave: str)->bool:
+    '''devuelve el valor de la clave pedida en el diccionario, chequea que el diccionario no este vacio, y que la clave este alli'''
     '''Obtiene un dato concreto de un diccionario'''
     if diccionario != {} and clave in diccionario:
         return diccionario[clave]
@@ -34,7 +37,8 @@ def obtener_dato(diccionario: dict, clave):
         return False
 
 
-def obtener_nombre(diccionario: dict):
+def obtener_nombre(diccionario: dict)->str:
+    '''devuelve el nombre de los personajes que esten en el dicionario'''
     nombre = obtener_dato(diccionario, "nombre")
     if nombre is not False:
         return nombre
@@ -43,7 +47,8 @@ def obtener_nombre(diccionario: dict):
         return None
 
 
-def obtener_nombre_y_dato(diccionario, clave):
+def obtener_nombre_y_dato(diccionario:dict, clave:str)->str:
+    '''Devuelve el nombre del personaje que pertenece al diccionario, la clave que se busca de ese mismo personaje y su valor.'''
     nombre = obtener_nombre(diccionario)
     dato = obtener_dato(diccionario, clave)
     if nombre is not None and dato is not False:
@@ -52,7 +57,8 @@ def obtener_nombre_y_dato(diccionario, clave):
         print("ERROR")
         return None
 
-def obtener_maximo(lista, clave):
+def obtener_maximo(lista:list, clave:str)->bool:
+    '''Busca el maximo entero o flotante de la lista en la clave asignada, este debe ser del tipo int o float para poder devolverlo.'''
     if not lista:
         print("ERROR: La lista esta vacia")
         return
@@ -73,7 +79,8 @@ def obtener_maximo(lista, clave):
         return maximo
 
 
-def obtener_minimo(lista, clave):
+def obtener_minimo(lista:list, clave:str)->bool:
+    '''Busca el minimo entero o flotante de la lista en la clave asignada, este debe ser del tipo int o float para poder devolverlo.'''
     if not lista:
         print("ERROR: La lista está vacia")
         return
@@ -91,7 +98,8 @@ def obtener_minimo(lista, clave):
     if identidad_minimo is not None:
         return minimo
 
-def obtener_dato_cantidad(lista, variable, clave):
+def obtener_dato_cantidad(lista:list, variable:int or float or str, clave:str)->list:
+    '''Devuelve la variable exacta que nosotros buscamos, extraida de la lista que se le asigne, tambien hay que asignarle la clave para que sepa donde buscar la variable.'''
     personajes_list = []
     for personaje in lista:
         if personaje[clave] == variable:
@@ -102,7 +110,8 @@ def obtener_dato_cantidad(lista, variable, clave):
     return personajes_list
 
 
-def stark_imprimir_heroes(lista):
+def stark_imprimir_heroes(lista:list)->str:
+    '''Imprime la lista de heroes y sus respectivos datos, se fija si no esta vacia previamente.'''
     for personaje in lista:
         if not lista:
             return False
@@ -119,7 +128,8 @@ def stark_imprimir_heroes(lista):
             print(f"Inteligencia: {(personaje['inteligencia']).capitalize()}")
             print("--------------------------------------------")
 
-def stark_imprimir_nombre_genero(lista):
+def stark_imprimir_nombre_genero(lista:list)->str:
+    '''Nos devuelve un mensaje en el que se muestra el nombre del personaje y su genero'''
     for personaje in lista:
         if not lista:
             return False
@@ -127,7 +137,8 @@ def stark_imprimir_nombre_genero(lista):
             print(f"Nombre: {personaje['nombre']} | Genero: {personaje['genero']}")
             print("--------------------------------------------")
 
-def sumar_dato_heroe(lista, clave):
+def sumar_dato_heroe(lista:list, clave:str)->bool:
+    '''Suma los datos de la clave asignada y los devuelve en la variable "suma"'''
     suma = 0
     for personaje in lista:
         if clave in personaje:
@@ -137,21 +148,24 @@ def sumar_dato_heroe(lista, clave):
     return suma
 
 
-def dividir(numero1, numero2):
+def dividir(numero1:int or float, numero2:int or float)->bool:
+    '''Su proposito es dividir los dos numeros que se le asigne, numero1 es el dividendo y numero2 el divisor'''
     numero_final = 0
     if numero2 != 0:
         numero_final = numero1 / numero2
     return numero_final
 
 
-def calcular_promedio(lista, clave):
+def calcular_promedio(lista:list, clave:str)->bool:
+    '''calcula el promedio de la clave que se le asigne, comparado con la cantidad de veces que se extrajo un dato.'''
     cantidad = len(lista)
     suma = sumar_dato_heroe(lista, clave)
     promedio = dividir(suma, cantidad)
     return promedio
 
 
-def mostrar_promedio_dato(lista, clave):
+def mostrar_promedio_dato(lista:list, clave:str)->bool:
+    '''Devuelve el promedio dentro de una variable.'''
     if not lista:
         return False
 
@@ -163,7 +177,8 @@ def mostrar_promedio_dato(lista, clave):
                 return promedio
 
 
-def imprimir_menu():
+def imprimir_menu()->str:
+    '''Menu con opciones, donde muestra que hace cada una de ellas.'''
     print("Bienvenido al Menu Stark, por favor ingrese el numero de una de las opciones a continuacion:")
     print("(1) Normalizar datos de la lista")
     print("(2) Recorrer la lista imprimiendo por consola el nombre de cada superheroe de genero NB")
@@ -179,7 +194,8 @@ def imprimir_menu():
     print("(12) Salir.")
 
 
-def validar_entero(numero):
+def validar_entero(numero:int or float)->bool:
+    '''Valida si lo que contiene lo que se le asigne a numero es un digito.'''
     if numero.isdigit():
         return True
     else:
@@ -187,6 +203,7 @@ def validar_entero(numero):
 
 
 def stark_menu_principal():
+    '''Imprime el menu, y devuelve un imput donde poner la opcion a elegir, si no es del 1 al 12 da error.'''
     imprimir_menu()
     opcion = input("Opcion: ")
     while not validar_entero(opcion) or not (1 <= int(opcion) <= 12):
@@ -194,7 +211,8 @@ def stark_menu_principal():
         opcion = input("Opcion: ")
     return int(opcion)
 
-def listar_personajes_por_color_de_ojos(lista):
+def listar_personajes_por_color_de_ojos(lista:list)->str:
+    '''Lista los personajes segun su color de ojo, devuelve un apartado para cada color'''
     personajes_por_color = {}
 
     for personaje in lista:
@@ -213,16 +231,18 @@ def listar_personajes_por_color_de_ojos(lista):
         print("--------------------------")
 
     
-def color_de_ojos_super(lista):
+def color_de_ojos_super(lista:list)->str:
+    '''Devuelve la cantidad en numero de cuantos personajes tienen el mismo color de ojos'''
     conteo_colores = {}
     for personaje in lista:
         color = personaje["color_ojos"].lower()
         conteo_colores[color] = conteo_colores.get(color, 0) + 1
     for color, cantidad in conteo_colores.items():
-        print(f'Color de ojos: {color}, Cantidad: {cantidad}')
+        print(f'\nColor de ojos: {color}, Cantidad: {cantidad}\n------------------------------------------------')
         
 
-def color_de_pelo_super(lista):
+def color_de_pelo_super(lista:list)->str:
+    '''Devuelve la cantidad en numero de cuantos personajes tienen el mismo color de pelo'''
     conteo_colores = {}
 
     for personaje in lista:
@@ -230,9 +250,10 @@ def color_de_pelo_super(lista):
         conteo_colores[color_pelo] = conteo_colores.get(color_pelo, 0) + 1
 
     for color, cantidad in conteo_colores.items():
-        print(f'Color de pelo: {color}, Cantidad: {cantidad}')
+        print(f'\nColor de pelo: {color}, Cantidad: {cantidad}\n------------------------------------------------')
 
-def listar_personajes_por_inteligencia(lista):
+def listar_personajes_por_inteligencia(lista:list)->str:
+    '''Devuelve una lista de los personajes con la misma inteligencia, cada una tiene su apartado.'''
     personajes_por_inteligencia = {}
 
     for personaje in lista:
@@ -250,7 +271,7 @@ def listar_personajes_por_inteligencia(lista):
         print("--------------------------")
 
 
-def stark_marvel_app(lista):
+def stark_marvel_app(lista:list):
     flag = True
     personajes_nb = []
     personajes_m = []
@@ -312,5 +333,3 @@ def stark_marvel_app(lista):
                 print("Usted eligio salir del programa, hasta la proxima!")
                 break
 
-
-stark_marvel_app(lista_personajes)
