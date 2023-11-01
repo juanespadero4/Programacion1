@@ -1,5 +1,5 @@
 from data_stark import lista_personajes
-from FuncionesTP2 import *
+from stark_2_funciones import *
 
 while True:
     menu = int(input("""

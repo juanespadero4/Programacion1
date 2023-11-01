@@ -1,5 +1,5 @@
 from data_stark import lista_personajes
-from stark_biblioteca import *
+from stark_3_funciones import *
 
 #JUAN IGNACIO ESPADERO 43181809
 

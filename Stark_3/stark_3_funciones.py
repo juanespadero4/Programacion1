@@ -1,8 +1,6 @@
 from data_stark import lista_personajes
 import re
 
-#JUAN IGNACIO ESPADERO 43181809
-
 def stark_normalizar_datos(lista: list)->str:
     '''Normaliza los datos y los vuelve in o float si son numeros enteros o con coma, si es str lo deja como esta'''
     exito = False
