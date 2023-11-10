@@ -37,11 +37,52 @@ def stark_menu_principal_desafio_5() -> str:
     else:
         return -1
 
-# def stark_marvel_app_5(data):      DEJAR PARA LO ULTIMO
+'''1.3'''
+def stark_marvel_app_5(lista_personajes):
+    while True:
+        imprimir_menu_desafio_5()
+        opcion = stark_menu_principal_desafio_5()
+        if opcion == "A":
+            stark_guardar_heroe_genero(lista_personajes, "M")
+        elif opcion == "B":
+            stark_guardar_heroe_genero(lista_personajes, "F")
+        elif opcion == "C":
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "M", "maximo", "altura")
+        elif opcion == "D":
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "F", "maximo", "altura")
+        elif opcion == "E":
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "M", "minimo", "altura")
+        elif opcion == "F":
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "F", "minimo", "altura")
+        elif opcion == "G":
+            stark_calcular_imprimir_guardar_promedio_altura_genero(lista_personajes, "M")
+        elif opcion == "H":
+            stark_calcular_imprimir_guardar_promedio_altura_genero(lista_personajes, "F")
+        elif opcion == "I":
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "M", "maximo", "altura")
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "F", "maximo", "altura")
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "M", "minimo", "altura")
+            stark_calcular_imprimir_guardar_heroe_genero(lista_personajes, "F", "minimo", "altura")
+        elif opcion == "J":
+            stark_calcular_cantidad_por_tipo(lista_personajes, "color_ojos")
+        elif opcion == "K":
+            stark_calcular_cantidad_por_tipo(lista_personajes, "color_pelo")
+        elif opcion == "L":
+            stark_calcular_cantidad_por_tipo(lista_personajes, "inteligencia")
+        elif opcion == "M":
+            stark_listar_heroes_por_dato(lista_personajes, "color_ojos")
+        elif opcion == "N":
+            stark_listar_heroes_por_dato(lista_personajes, "color_pelo")
+        elif opcion == "O":
+            stark_listar_heroes_por_dato(lista_personajes, "inteligencia")
+        elif opcion == "Z":
+            break
+        else:
+            imprimir_dato("Opción inválida")
 
 '''1.4'''
 def leer_archivo(nombre_archivo: str) -> list:
-    with open('data_stark.json') as file:
+    with open(r'C:\Users\Juan\Desktop\UTN\Programacion1\Stark_5\data_stark.json') as file:
         lista_personajes = json.load(file)
     return lista_personajes
 
@@ -73,7 +114,7 @@ def obtener_nombre_capitalizado(heroe: dict) -> str:
 def obtener_nombre_y_dato(heroe: dict, clave: str) -> str:
     nombre_formateado = obtener_nombre_capitalizado(heroe)
     if clave in heroe:
-        dato = heroe[clave]  # str
+        dato = heroe[clave]
         return f"{nombre_formateado} | {clave.capitalize()}: {dato}"
     else:
         return f"{nombre_formateado} | {clave.capitalize()}: No disponible"
@@ -274,8 +315,6 @@ def obtener_lista_de_tipos(lista_heroes: list, dato: str) -> set:
     lista_valores = set([capitalizar_palabras(valor) for valor in lista_valores])
     return lista_valores
 
-print(obtener_lista_de_tipos(lista_personajes, "color_pelo"))
-
 '''6.2'''
 def normalizar_dato(dato: str, valor_default: str) -> str: 
     if not dato:
@@ -296,3 +335,34 @@ def normalizar_heroe(heroe: dict, clave: str) -> dict:
         heroe["nombre"] = nombre_capitalizado
     return heroe
 
+'''6.4'''
+def obtener_heroes_por_tipo(lista_heroes:list, conjunto_tipos:set, clave_a_evaluar):
+    diccionario_variedades = {}
+
+    for tipo in conjunto_tipos:
+        diccionario_variedades[tipo] = []
+
+    for heroe in lista_heroes:
+        if clave_a_evaluar in heroe:
+            valor = normalizar_dato(heroe[clave_a_evaluar], "N/A").lower()
+            for tipo in conjunto_tipos:
+                if valor == tipo.lower():
+                    diccionario_variedades[tipo].append(heroe["nombre"])
+        else:
+            print('la clave no esta en la lista')
+
+'''6.5'''
+def guardar_heroes_por_tipo(diccionario_variedades, tipo_dato):
+    mensaje = ""
+    for tipo, heroes in diccionario_variedades.items():
+        if heroes:
+            nombres = " | ".join(heroes)
+            mensaje += f"{tipo_dato} {tipo}: {nombres}\n"
+    nombre_archivo = f"heroessegun{tipo_dato}.csv"
+    return guardar_archivo(nombre_archivo, mensaje)
+
+'''6.6'''
+def stark_listar_heroes_por_dato(lista_heroes, tipo_dato):
+    tipos = obtener_lista_de_tipos(lista_heroes, tipo_dato)
+    diccionario_variedades = obtener_heroes_por_tipo(lista_heroes, tipos, tipo_dato)
+    return guardar_heroes_por_tipo(diccionario_variedades, tipo_dato)
